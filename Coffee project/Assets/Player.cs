@@ -9,9 +9,7 @@ public class Player : MonoBehaviour
     private float limitForRotation = 70;
 	private Vector2 rotation = Vector2.zero;
     private Camera mainCamera;
-
     #endregion
-
 
     void Start()
     {
@@ -27,11 +25,10 @@ public class Player : MonoBehaviour
         Controller.Move(move * 4); // speed
      
 
-        // Camera rotation
+        // Camera rotation + player rotation (X axes)
         rotation.x += Input.GetAxis("Mouse X") * sensitivity;
 		rotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
 		rotation.y = Mathf.Clamp(rotation.y, -limitForRotation, limitForRotation);
-
 
 		var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
 		var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left) ;
@@ -41,6 +38,4 @@ public class Player : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(rotation.x, Vector3.zero) * xQuat ;
     }
   
-
-
 }
