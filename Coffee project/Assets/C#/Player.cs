@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        Vector3 move = new Vector3(-Input.GetAxisRaw("Horizontal") * Time.deltaTime, 0, -Input.GetAxisRaw("Vertical") * Time.deltaTime);
+        Vector3 move = new Vector3(-Input.GetAxisRaw("Horizontal"), -1, -Input.GetAxisRaw("Vertical") )  * Time.deltaTime;
 
         move = this.transform.TransformDirection(move);
         Controller.Move(move * 4); // speed
@@ -37,5 +37,7 @@ public class Player : MonoBehaviour
 
         transform.localRotation = Quaternion.AngleAxis(rotation.x, Vector3.zero) * xQuat ;
     }
-  
+
+
+
 }
