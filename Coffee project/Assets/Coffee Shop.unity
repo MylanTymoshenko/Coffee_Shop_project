@@ -2251,11 +2251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935b8f4396a082b4f98b14268f5117e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomersManager
+  CurrentCustomer: {fileID: 0}
   PropsData: {fileID: 11400000, guid: fca77e73c17c13c4cb345fbc167a7bcc, type: 2}
   DestinationForCustomers: {fileID: 1966218767}
   ReturnPoint: {fileID: 1729894496}
   MiddlePoint: {fileID: 1713009648}
-  CurrentCustomer: {fileID: 0}
 --- !u!4 &587612176
 Transform:
   m_ObjectHideFlags: 0
@@ -8964,7 +8964,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 952c7aa972fd40045ae2497cb3baa4bf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ba34de75034f2ae4bbbe1fc09a97993d, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1901829928
 Transform:
