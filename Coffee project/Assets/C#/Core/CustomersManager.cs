@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CustomersManager : MonoBehaviour
 { 
@@ -15,26 +13,20 @@ public class CustomersManager : MonoBehaviour
     public Transform DestinationForCustomers;
     public Transform ReturnPoint;
     public Transform MiddlePoint;
-
-    
     private List<CustomerProp> currentPropsInBasket = new List<CustomerProp>();
     void Start()
     {
         uimanager = FindObjectOfType<UIManager>();
-       
     }
     public Order GenerateRandomOrder()
     {
         List<CustomerProp> DrinkItems = new List<CustomerProp>(PropsData.AllItems.Where(item => item.IsItFood == false)); 
         List<CustomerProp> FoodItems = new List<CustomerProp>(PropsData.AllItems.Where(item => item.IsItFood == true));
 
-
         Debug.Log(DrinkItems.Count +""+ ""+ FoodItems.Count);
         CustomerProp randomDrink = DrinkItems[UnityEngine.Random.RandomRange(0, DrinkItems.Count)];
-     
-        CustomerProp randomFood = FoodItems[UnityEngine.Random.RandomRange(0, FoodItems.Count)];
-
         
+        CustomerProp randomFood = FoodItems[UnityEngine.Random.RandomRange(0, FoodItems.Count)];
 
         Order order = new Order
         {
@@ -46,8 +38,6 @@ public class CustomersManager : MonoBehaviour
 
         return order;
     }
-
-    
     public void SetCurrentOrder(Order order, Customer customer)
     {
         CurrentOrder = order;
@@ -58,7 +48,6 @@ public class CustomersManager : MonoBehaviour
     {
         uimanager.OrderRequestTextAnimator.gameObject.SetActive(true);
         string runText = "";
-
 
         foreach(char letter in text)
         {
@@ -77,7 +66,6 @@ public class CustomersManager : MonoBehaviour
         }
        
     }
-   
     
     public void PutPropInBasket(CustomerProp prop)
     {
@@ -88,7 +76,7 @@ public class CustomersManager : MonoBehaviour
         }
         else
         {
-             Debug.Log("Wrong Item");
+            Debug.Log("Wrong Item");
         }
 
         CheckOrderValidity();

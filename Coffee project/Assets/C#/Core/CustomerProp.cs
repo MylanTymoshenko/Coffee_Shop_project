@@ -14,7 +14,6 @@ public class CustomerProp : MonoBehaviour
         WhiteCoffee,
         DarkCoffee
     }
-
     
 }
 
