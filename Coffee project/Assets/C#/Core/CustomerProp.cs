@@ -12,7 +12,9 @@ public class CustomerProp : MonoBehaviour
         PinkDonut,
         ChocolateDonut,
         WhiteCoffee,
-        DarkCoffee
+        DarkCoffee,
+        OrangeJuice,
+        CherryJuice
     }
     
 }
