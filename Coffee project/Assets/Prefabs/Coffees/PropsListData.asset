@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: PropsListData
   m_EditorClassIdentifier: Assembly-CSharp::PropsListData
   AllItems:
-  - {fileID: 735853365914440806, guid: 5165e4963e2271948b95dafd314eb95e, type: 3}
-  - {fileID: -9175956449164189253, guid: 10113cf1769075a4dac4991f6571d684, type: 3}
-  - {fileID: 3146397298092635375, guid: dddae8ad4203b2f4cb109e23582781d0, type: 3}
   - {fileID: 3924169023666272283, guid: b7b53f4bc39a31b4eb5dd124e1afe25b, type: 3}
   - {fileID: 5572309587821059214, guid: 5ecf7c2584b413a448f8fdd7db875182, type: 3}
+  - {fileID: -9175956449164189253, guid: 10113cf1769075a4dac4991f6571d684, type: 3}
+  - {fileID: 3146397298092635375, guid: dddae8ad4203b2f4cb109e23582781d0, type: 3}
+  - {fileID: 3519346778361008889, guid: ffc760e6babea2b44b514e40b7e6639b, type: 3}
+  - {fileID: 1930053714464268727, guid: ee547936d4425964ebe4f9d768ba22e3, type: 3}
+  - {fileID: 735853365914440806, guid: 5165e4963e2271948b95dafd314eb95e, type: 3}
