@@ -14,7 +14,8 @@ public class CustomerProp : MonoBehaviour
         WhiteCoffee,
         DarkCoffee,
         OrangeJuice,
-        CherryJuice
+        CherryJuice,
+        Cake
     }
     
 }

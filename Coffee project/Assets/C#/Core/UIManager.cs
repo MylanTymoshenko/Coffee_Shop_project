@@ -1,10 +1,15 @@
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public TextMeshProUGUI CustomersCountText;
+    public Button RestartGameButton;
+    public GameObject MakeCoffeeHint;
+    public GameObject WrongItemText;
     public Animator OrderRequestTextAnimator;
     public TextMeshProUGUI OrderNameText;
     public Image CentrePointImg;
@@ -33,6 +38,7 @@ public class UIManager : MonoBehaviour
     {
         CentrePointImg.sprite = NormalSprite;
     }
+
 
 
 }

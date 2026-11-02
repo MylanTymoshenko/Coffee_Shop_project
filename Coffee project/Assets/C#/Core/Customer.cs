@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class Customer : MonoBehaviour
 {
-    private int pathStage; 
+    private int pathStage;
     private bool requestedOrder;
     private CustomersManager manager;
     private NavMeshAgent agent;
@@ -13,12 +13,12 @@ public class Customer : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         manager = FindObjectOfType<CustomersManager>();
-       
+
         StartJourney();
     }
     void StartJourney()
     {
-       
+
         agent.SetDestination(manager.MiddlePoint.position);
         pathStage = 1;
     }
@@ -31,7 +31,13 @@ public class Customer : MonoBehaviour
         if (pathStage != 0)
         {
             if (agent.remainingDistance < 0.1f)
-            { 
+            {
+                if (pathStage == 5 && !agent.pathPending)
+                {
+                    manager.SpawnNextCustomer();
+                    Destroy(gameObject);
+                    return;
+                }
                 if (pathStage == 1)
                 {
                     pathStage = 2;
@@ -49,8 +55,8 @@ public class Customer : MonoBehaviour
                 if (pathStage == 4)
                 {
                     pathStage = 5;
-                   agent.SetDestination(manager.ReturnPoint.position);
-                }   
+                    agent.SetDestination(manager.ReturnPoint.position);
+                }
             }
             if (pathStage == 3)
             {
@@ -59,5 +65,5 @@ public class Customer : MonoBehaviour
             }
         }
     }
-  
+
 }

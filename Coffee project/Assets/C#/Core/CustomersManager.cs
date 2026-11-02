@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Rendering;
 public class CustomersManager : MonoBehaviour
 {
     public Order GenerateRandomOrder()
@@ -36,13 +37,28 @@ public class CustomersManager : MonoBehaviour
         {
             Debug.Log("Wrong Item");
         }
-
+        CheckForWrongItems();
         CheckOrderValidity();
     }
+    void CheckForWrongItems()
+    {
+        bool allCorrect = true;
 
+        foreach (CustomerProp prop in currentPropsInBasket)
+        {
+            if (CheckPropValidity(prop) == false)
+            {
+                allCorrect = false;
+                break;
+
+            }
+        }
+        uimanager.WrongItemText.gameObject.SetActive(!allCorrect);
+    }
     public void RemovePropFromBasket(CustomerProp prop)
     {
         currentPropsInBasket.Remove(prop);
+        CheckForWrongItems();
         CheckOrderValidity();
     }
 
@@ -62,6 +78,8 @@ public class CustomersManager : MonoBehaviour
     }
     private bool CheckPropValidity(CustomerProp prop)
     {
+        if (CurrentOrder == null) return false;
+
         if (prop.ItemType == CurrentOrder.ItemDrink || prop.ItemType == CurrentOrder.ItemFood)
         {
             return true;
@@ -84,6 +102,9 @@ public class CustomersManager : MonoBehaviour
         }
 
         currentPropsInBasket.Clear();
+        completedOrders++;
+        uimanager.CustomersCountText.text = completedOrders.ToString() + "/3 Orders completed";
+      
         CurrentOrder = null;
         CurrentCustomer.OrderCompleted();
         CurrentCustomer = null;
@@ -95,19 +116,33 @@ public class CustomersManager : MonoBehaviour
     public Transform DestinationForCustomers;
     public Transform ReturnPoint;
     public Transform MiddlePoint;
+    public Transform SpawnPoint;
+
+    public Customer CustomerPrefab;
+    private int CustomersCount = 3;
+    private int spawnedCount;
 
     public PropsListData PropsData;
-    [NonSerialized]public Order CurrentOrder;
+    [NonSerialized] public Order CurrentOrder;
 
-    [HideInInspector]public Customer CurrentCustomer;
+    [HideInInspector] public Customer CurrentCustomer;
     private UIManager uimanager;
     private List<CustomerProp> currentPropsInBasket = new List<CustomerProp>();
-
+    private int completedOrders;
     void Start()
     {
         uimanager = FindObjectOfType<UIManager>();
+        SpawnNextCustomer();
     }
 
+    public void SpawnNextCustomer()
+    {
+        if (spawnedCount >= CustomersCount) return;
+
+        spawnedCount++;
+        Instantiate(CustomerPrefab, SpawnPoint.position, SpawnPoint.rotation);
+    }
+ 
     public void SetCurrentOrder(Order order, Customer customer)
     {
         CurrentOrder = order;
@@ -120,7 +155,7 @@ public class CustomersManager : MonoBehaviour
         uimanager.OrderRequestTextAnimator.gameObject.SetActive(true);
         string runText = "";
 
-        foreach(char letter in text)
+        foreach (char letter in text)
         {
             runText += letter;
             uimanager.OrderNameText.text = runText;
@@ -135,7 +170,7 @@ public class CustomersManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             uimanager.OrderRequestTextAnimator.gameObject.SetActive(false);
         }
-       
+
     }
 }
 
@@ -146,6 +181,3 @@ public class Order
     public CustomerProp.ItemTypeEnum ItemDrink;
     public CustomerProp.ItemTypeEnum ItemFood;
 }
-
-
-

@@ -25,7 +25,7 @@ public class ObjectGrabber : MonoBehaviour
        
         void Start()
         {
-            currentGrabDistance = 2;
+            currentGrabDistance = 1.5f;
  
             uimanager = FindObjectOfType<UIManager>();
             
